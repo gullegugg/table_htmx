@@ -6,6 +6,13 @@
     <script src="scripts/htmx.min.js"></script>
   </head>
   <body>
+    <form hx-post="/debug/add">
+      <label>
+        Amount to add
+        <input name="add_count" type="number" required min="1" />
+      </label>
+      <input type="submit" value="Add generated entries to db" />
+    </form>
     <table>
       <thead>
         <tr>
