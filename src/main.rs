@@ -4,7 +4,6 @@ use askama::Template;
 use axum::{
     extract::{Query, State},
     http::StatusCode,
-    response::Html,
     routing::{get, post},
     Form, Router,
 };
@@ -33,7 +32,7 @@ struct PageRequest {
 async fn index(
     State(pool): State<SqlitePool>,
     Query(page_request): Query<PageRequest>,
-) -> Html<String> {
+) -> IndexTemplate {
     let limit = page_request.page_size.unwrap_or(100);
     let offset = page_request.page_number.unwrap_or(0) * limit;
     let recipes = sqlx::query_as!(
@@ -51,7 +50,7 @@ async fn index(
     .fetch_all(&pool)
     .await
     .unwrap();
-    Html(IndexTemplate { recipes }.render().unwrap())
+    IndexTemplate { recipes }
 }
 
 #[derive(Debug, Deserialize)]
