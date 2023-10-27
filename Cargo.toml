@@ -16,4 +16,4 @@ tower = "0.4"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["default", "env-filter"] }
 serde = { version = "1", features = ["default", "serde_derive", "derive"] }
-askama_axum = "0.3.0"
+askama_axum = "0.3"
