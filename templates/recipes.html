@@ -1,0 +1,32 @@
+<div id="recipes">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for recipe in recipes %}
+      <tr>
+        <td>{{ recipe.title }}</td>
+        <td>{{ recipe.author }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if page_number > 0 %}
+  <button
+    hx-get="/recipes?page_number={{ page_number - 1 }}"
+    hx-target="#recipes"
+  >
+    Previous page
+  </button>
+  {% endif %}
+  <button
+    hx-get="/recipes?page_number={{ page_number + 1 }}"
+    hx-target="#recipes"
+  >
+    Next page
+  </button>
+</div>
